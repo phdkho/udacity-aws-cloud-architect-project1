@@ -1,0 +1,21 @@
+1. Minimum RTO for a single AZ outage:
+
+    Assuming above failover time starts as soon as AZ becomes unavailable, estimated minimum RTO is 120 sec and should be automatically detected & managed by RDS.
+
+2. Minimum RTO for a single region outage:
+
+    - Time to bring read replica as a standalone primary instance takes around 15-20 minutes
+    - Time to apply new DNS changes in application to connect to new endpoint can take anywhere from 15-120 minutes
+    Estimated minimum RTO for a single region outage about 15-60 minutes.
+
+
+3. Minimum RPO for a single AZ outage:
+ 
+  - Assuming web-server continued to serve requests for 60-120sec until database failover completed.
+    Estimated minimum RPO for single AZ outage about 2 minutes
+
+4. Minimum RPO for a single region outage:
+
+  - In Multi-AZ, Multi-region mode, database is updated asynchronously between Primary and read replica.
+  - During initial setup and installation time, it takes minimum 15-20 minutes for system to get into Available state.
+  Estimated minimum RPO for single region outage about 15 minutes.
